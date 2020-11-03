@@ -13,12 +13,16 @@ namespace hb.Business
 
         public Vehicle(Position pos, MoveSet moves)
         {
-            this.Pos = pos;
-            this.Moves = moves;
+            this.Pos = pos ?? throw new ArgumentNullException("pos");
+            this.Moves = moves ?? throw new ArgumentNullException("moves");
         }
+
+
 
         public void HandleMoves()
         {
+            if (string.IsNullOrEmpty(Moves.Moves))
+                throw new ArgumentNullException("moves");
             foreach (var move in Moves.Moves.ToCharArray().Select(m => Enum.Parse<Enums.MoveType>(m.ToString())))
             {
                 this.Move(move);

@@ -19,6 +19,7 @@ namespace hb.Business.Types
             this.Direction = direction;
         }
 
+
         public void MoveForward()
         {
             switch (Direction)

@@ -18,6 +18,8 @@ namespace hb.Business
 
         public void HandleMoves()
         {
+            if (Vehicles == null || Vehicles.Count == 0)
+                throw new ArgumentNullException("Vehicles");
             foreach (var vehicle in Vehicles)
             {
                 vehicle.HandleMoves();
