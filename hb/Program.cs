@@ -72,6 +72,9 @@ namespace hb
             }
         }
 
+        #region Drive By FileInput
+
+
         private static Field DriveByFile()
         {
             var filesPath = Path.Combine(Environment.CurrentDirectory, "InputFiles");
@@ -118,6 +121,10 @@ namespace hb
             return field;
         }
 
+        #endregion
+
+        #region Drive By KeybordInput
+
         private static Field DriveByKeyboard()
         {
             var boundry = GetBoundries();
@@ -145,6 +152,39 @@ namespace hb
             return GetBoundries();
         }
 
+        private static Position GetPosition(int i)
+        {
+            Console.WriteLine($"Please Enter {i.AddOrdinal()} Rover's Position like 12N");
+            var positionInput = Console.ReadLine();
+            if (positionInput != null)
+            {
+                var position = ParsePosition(positionInput);
+                if (position != null)
+                {
+                    return position;
+                }
+            }
+            return GetPosition(i);
+        }
+        private static MoveSet GetMoveSet(int i)
+        {
+            Console.WriteLine($"Please Enter {i.AddOrdinal()} Rover's Move Set like LMRMLMMM by using L,R,M");
+            var movesInput = Console.ReadLine();
+            if (movesInput != null)
+            {
+                var moveset = ParseMoveSet(movesInput);
+                if (moveset != null)
+                {
+                    return moveset;
+                }
+
+            }
+            return GetMoveSet(i);
+        }
+        #endregion
+
+        #region Input Parsing
+
         private static Boundry ParseBoundry(string boundariesInput)
         {
             var boundaries = boundariesInput.ToUpper().ToCharArray();
@@ -168,20 +208,6 @@ namespace hb
             return null;
         }
 
-        private static Position GetPosition(int i)
-        {
-            Console.WriteLine($"Please Enter {i.AddOrdinal()} Rover's Position like 12N");
-            var positionInput = Console.ReadLine();
-            if (positionInput != null)
-            {
-                var position = ParsePosition(positionInput);
-                if (position != null)
-                {
-                    return position;
-                }
-            }
-            return GetPosition(i);
-        }
 
         private static Position ParsePosition(string positionInput)
         {
@@ -207,22 +233,6 @@ namespace hb
             return null;
         }
 
-        private static MoveSet GetMoveSet(int i)
-        {
-            Console.WriteLine($"Please Enter {i.AddOrdinal()} Rover's Move Set like LMRMLMMM by using L,R,M");
-            var movesInput = Console.ReadLine();
-            if (movesInput != null)
-            {
-                var moveset = ParseMoveSet(movesInput);
-                if (moveset != null)
-                {
-                    return moveset;
-                }
-
-            }
-            return GetMoveSet(i);
-        }
-
         private static MoveSet ParseMoveSet(string movesInput)
         {
             var moveSet = new MoveSet(movesInput.ToUpper());
@@ -237,6 +247,10 @@ namespace hb
 
             return null;
         }
+
+        #endregion
+
+
 
         #region Intro
 

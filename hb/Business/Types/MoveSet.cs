@@ -18,6 +18,7 @@ namespace hb.Business.Types
             this.Moves = moves;
         }
 
+
         public bool IsValid()
         {
             var moves = this.Moves.ToCharArray();
