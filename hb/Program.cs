@@ -74,11 +74,12 @@ namespace hb
 
         private static Field DriveByFile()
         {
-            var fileList = Directory.EnumerateFiles(Environment.CurrentDirectory, "*.txt").ToList();
+            var filesPath = Path.Combine(Environment.CurrentDirectory, "InputFiles");
+            var fileList = Directory.EnumerateFiles(filesPath, "*.txt").ToList();
             Console.WriteLine();
             if (fileList.Count == 0)
             {
-                Console.WriteLine("*.txt File Not Found at the base folder.");
+                Console.WriteLine($"*.txt File Not Found at {filesPath} folder.");
                 return null;
             }
             var i = 1;
